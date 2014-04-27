@@ -1,0 +1,3 @@
+* My Dot files
+SSimple and clean setup i dont use many tools or fancy plugins
+yet... :S Going to learn zsh i reckon soon so that might change.
