@@ -7,15 +7,23 @@
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; Happy Hacking")
  '(scroll-bar-mode nil)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(menu-bar-mode nil))
 
 (require 'package)
 (add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+	     '("marmalade" .
+	       "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("elpy" .
+	       "http://jorgenschaefer.github.io/packages/"))
 (package-initialize)
 
+;; pip packages
+;; sudo pip install epc jedi elpy rope
+
 ;; installed packages
+;; elpy
 ;; jedi
 ;; rust-mode
 ;; go-mode
@@ -70,9 +78,4 @@
      
      (setq linum-format 'linum-format-func)))
 (setq linum-format "%3d \u2502")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(elpy-enable)
