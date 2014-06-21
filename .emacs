@@ -122,5 +122,5 @@
           (propertize (number-to-string line) 'face 'linum))))
      
      (setq linum-format 'linum-format-func)))
-(setq linum-format "%3d \u2502")
+(setq linum-format "%3d ")
 
