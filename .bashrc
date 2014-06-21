@@ -1,3 +1,4 @@
+export TERM=xterm-256color
 export EDITOR=emacs
 
 # Prompt
@@ -9,5 +10,4 @@ BBLUE='\[\033[1;34m\]'
 BLUE='\[\033[0;34m\]'
 NORMAL='\[\033[00m\]'
 PURPLE='\[\033[0;35m\]'
-
 PS1="${PURPLE}\u@\h ${BBLUE}{${RED}\w${BBLUE}} ${BRED}\$ ${NORMAL}"
