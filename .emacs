@@ -91,6 +91,9 @@
 (setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
 
+;; web-mode on html files
+(setq auto-mode-alist (append ' (("\\.html?\\'" . web-mode)) auto-mode-alist))
+
 ;; Mardown mode on .md files
 (setq auto-mode-alist (append '(("\\.md\\'" . markdown-mode)) auto-mode-alist))
 
