@@ -19,7 +19,7 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
-;; packages installed
+;; emacs packages installed
 ;; + jedi
 ;; + rust-mode
 ;; + go-mode
@@ -31,25 +31,35 @@
 ;; + groovy-mode
 ;; + rainbow-mode
 ;; + smart-mode-line
+;; + nyan-mode
+
+;; python packages
+;; $ sudo pip install jedi python-epc
 
 (transient-mark-mode 1) ; highlight text selection
 (delete-selection-mode 1) ; delete seleted text when typing
 
+;; font lock, line and column numbers on modeline
 (global-font-lock-mode 1)
 (global-linum-mode 1)
 (column-number-mode 1)
 
+;; highlight parens expression
 (setq show-paren-style 'expression)
-(setq make-backup-files nil) ; stop creating those backup~ files
-(setq auto-save-default nil) ; stop creating those #autosave# files
+
+;; stop creating those backup~ files
+(setq make-backup-files nil) 
+
+;; stop creating auto-save files #
+(setq auto-save-default nil)
 
 ;; make electric-pair-mode work on more brackets
 (electric-pair-mode 1)
 (setq electric-pair-pairs '((?\" . ?\")
                             (?\{ . ?\})))
 
-;; tabbar
-(setq tabbar-ruler-global-tabbar t) ; If you want tabbar
+;; tabbar ruler
+(setq tabbar-ruler-global-tabbar t)
 (require 'cl)
 (require 'tabbar-ruler)
 
@@ -57,6 +67,8 @@
 (require 'smart-mode-line)
 (sml/setup)
 (sml/apply-theme 'light)
+(nyan-mode)
+(nyan-start-animation)
 
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/zenburn-theme-20140613.207/")
@@ -123,4 +135,3 @@
      
      (setq linum-format 'linum-format-func)))
 (setq linum-format "%3d ")
-
