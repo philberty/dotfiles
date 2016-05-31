@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-	("05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" "fb4bf07618eab33c89d72ddc238d3c30918a501cf7f086f2edf8f4edba9bd59f" default)))
+    ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" "fb4bf07618eab33c89d72ddc238d3c30918a501cf7f086f2edf8f4edba9bd59f" default)))
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; Happy Hacking")
  '(scroll-bar-mode nil)
@@ -24,10 +24,6 @@
 (defun system-is-linux ()
   (interactive)
   (string-equal system-type "gnu/linux"))
-
-(setq-default cursor-type 'hollow)
-(set-cursor-color "red")
-(cua-mode 1)
 
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
@@ -70,11 +66,20 @@
 ;; + helm-projectile
 ;; + helm-spotify
 ;; + google-c-style
+;; + smooth-scrolling
 
 ;; auto reload disk changes
 (global-auto-revert-mode t)
 ;; turn on line wrap
 (setq-default truncate-lines 1)
+
+;;(require 'smooth-scrolling)
+(setq smooth-scroll-margin 5)
+
+;; font lock, line and column numbers on modeline
+(global-font-lock-mode 1)
+(global-linum-mode 1)
+(column-number-mode 1)
 
 (require 'helm)
 (require 'helm-projectile)
@@ -87,19 +92,32 @@
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (helm-projectile-on)
 
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+(semantic-mode 1)
+(require 'stickyfunc-enhance)
+
+;; (require 'neotree)
+;; (with-eval-after-load 'neotree
+;;   (add-hook 'neotree-mode-hook 
+;;     (lambda () (with-current-buffer " *NeoTree*"
+;;                  (setq-local linum-mode nil)))))
+;; (global-set-key [f8] 'neotree-toggle)
+;; (neotree-toggle)
+;; (setq neo-theme 'ascii)
+;; (custom-set-faces
+;;  '(neo-banner-face ((t . (:inherit shadow))) t)
+;;  '(neo-header-face ((t . (:inherit shadow))) t)
+;;  '(neo-root-dir-face ((t . (:inherit link-visited :underline nil))) t)
+;;  '(neo-dir-link-face ((t . (:inherit dired-directory))) t)
+;;  '(neo-file-link-face ((t . (:inherit default))) t)
+;;  '(neo-button-face ((t . (:inherit dired-directory))) t)
+;;  '(neo-expand-btn-face ((t . (:inherit button))) t))
 
 ;; python packages
 ;; $ sudo pip install jedi python-epc
 
 (transient-mark-mode 1) ; highlight text selection
 (delete-selection-mode 1) ; delete seleted text when typing
-
-;; font lock, line and column numbers on modeline
-(global-font-lock-mode 1)
-(global-linum-mode 1)
-(column-number-mode 1)
 
 ;; highlight parens expression
 (show-paren-mode 1)
@@ -112,7 +130,7 @@
 (setq auto-save-default nil)
 
 ;; make electric-pair-mode work on more brackets
-(electric-pair-mode 1)
+(electric-pair-mode 0)
 (setq electric-pair-pairs '((?\" . ?\")
                             (?\{ . ?\})))
 
@@ -125,9 +143,10 @@
 (require 'tabbar-ruler)
 
 ;; modeline
+(setq sml/no-confirm-load-theme t)
 (require 'smart-mode-line)
 (sml/setup)
-(sml/apply-theme 'light)
+(sml/apply-theme 'respectful)
 (nyan-mode)
 (nyan-start-animation)
 
@@ -135,13 +154,17 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai-theme-20150521.2257/")
 (load-theme 'monokai)
 
+(setq-default cursor-type 'hollow)
+(set-cursor-color "red")
+(cua-mode 1)
+
 ;; auto-complete
 (add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-1.4")
 (require 'auto-complete-config)
 (ac-config-default)
 
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140824.1658/dict/")
-;; (setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+(setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
 (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
 (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
 (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
@@ -161,6 +184,9 @@
 ;; Load python-mode for scons files
 (setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
+
+;; .gpy is javascript
+(setq auto-mode-alist (cons '("*.gyp" . javascript-mode) auto-mode-alist))
 
 ;; c/c++ mode style
 (setq-default c-basic-offset 4 c-default-style "linux")
@@ -185,7 +211,7 @@
 
 ;; high light current line
 (global-hl-line-mode 1)
-;; (set-face-background 'hl-line "#330")
+(set-face-background 'hl-line "#330")
 
 ;; Allow hash to be entered
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
@@ -197,7 +223,6 @@
 (setq ring-bell-function 'ignore)
 
 ;; line number mode
-(global-linum-mode 1)
 (eval-after-load 'linum
   '(progn
      (defface linum-leading-zero
@@ -216,13 +241,6 @@
      
      (setq linum-format 'linum-format-func)))
 (setq linum-format "%3d \u2502")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 
 (defun how-many-region (begin end regexp &optional interactive)
   "Print number of non-trivial matches for REGEXP in region.                    
@@ -240,13 +258,5 @@ Non-interactive arguments are Begin End Regexp"
       (if interactive (message "%d occurrences" count))
       count)))
 
-(defun infer-indentation-style ()
-  ;; if our source file uses tabs, we use tabs, if spaces spaces, and if        
-  ;; neither, we use the current indent-tabs-mode                               
-  (let ((space-count (how-many-region (point-min) (point-max) "^  "))
-        (tab-count (how-many-region (point-min) (point-max) "^\t")))
-    (if (> space-count tab-count) (setq indent-tabs-mode nil))
-    (if (> tab-count space-count) (setq indent-tabs-mode t))))
-
 (setq indent-tabs-mode nil)
-(infer-indentation-style)
+
