@@ -18,6 +18,19 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
+(setq package-list '(
+                     neotree
+                     monokai-theme
+                              ))
+;; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+        (package-install package)))
+
 (defun system-is-mac ()
   (interactive)
   (string-equal system-type "darwin"))
