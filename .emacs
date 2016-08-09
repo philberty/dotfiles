@@ -18,10 +18,31 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
-(setq package-list '(
+(setq package-list '(jedi
+		     rust-mode
+		     go-mode
+		     web-mode
+		     markdown-mode
+		     cython-mode
+		     ggtags
+		     google-c-style
+		     stickyfunc-enhance
+		     smart-mode-line
+                     smart-mode-line-powerline-theme
+                     auto-complete
+                     ac-etags
+		     ac-c-headers
+		     tabbar
+		     tabbar-ruler
+		     nyan-mode
+		     projectile
                      neotree
-                     monokai-theme
-                              ))
+		     helm
+		     helm-projectile
+		     helm-gtags
+		     smooth-scrolling
+                     monokai-theme))
+
 ;; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
@@ -61,28 +82,6 @@
 ; set command key to be meta instead of option
 (if (system-is-mac)
    (setq ns-command-modifier 'meta))
-
-;; emacs packages installed
-;; + jedi
-;; + rust-mode
-;; + go-mode
-;; + web-mode
-;; + zenburn-theme
-;; + markdown-mode
-;; + tabbar
-;; + tabbar-ruler
-;; + groovy-mode
-;; + rainbow-mode
-;; + smart-mode-line
-;; + nyan-mode
-;; + projectile
-;; + neotree
-;; + helm
-;; + helm-projectile
-;; + helm-spotify
-;; + google-c-style
-;; + smooth-scrolling
-;; + helm-gtags
 
 ;; auto reload disk changes
 (global-auto-revert-mode t)
@@ -175,7 +174,6 @@
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai-theme-20150521.2257/")
 (load-theme 'monokai)
-;; (load-theme 'ample-zen)
 
 (setq-default cursor-type 'hollow)
 (set-cursor-color "red")
