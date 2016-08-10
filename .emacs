@@ -24,6 +24,7 @@
 		     web-mode
 		     markdown-mode
 		     cython-mode
+                     llvm-mode
 		     ggtags
 		     google-c-style
 		     stickyfunc-enhance
