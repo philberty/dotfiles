@@ -12,8 +12,12 @@
  '(package-selected-packages
    (quote
     (fill-column-indicator flycheck monokai-theme smooth-scrolling helm-gtags helm-projectile helm neotree projectile nyan-mode tabbar-ruler tabbar ac-c-headers ac-etags smart-mode-line-powerline-theme smart-mode-line stickyfunc-enhance google-c-style ggtags llvm-mode cython-mode markdown-mode web-mode go-mode rust-mode jedi)))
- '(scroll-bar-mode nil)
- '(tool-bar-mode nil))
+  (if (not (display-graphic-p))
+     '(menu-bar-mode nil)
+     '(scroll-bar-mode nil)
+   '(tool-bar-mode nil)
+ )
+)
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -66,11 +70,7 @@
   (interactive)
   (string-equal system-type "gnu/linux"))
 
-(setq make-backup-files nil) ; stop creating backup~ files
-(setq auto-save-default nil) ; stop creating #autosave# files
-
 (global-visual-line-mode 1) ; 1 for on, 0 for off.
-(menu-bar-mode -1)
 
 (require 'fill-column-indicator)
 (setq fci-rule-width 1)
