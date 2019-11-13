@@ -362,6 +362,13 @@ Non-interactive arguments are Begin End Regexp"
           (set-visited-file-name new-name)
                     (set-buffer-modified-p nil))))))
 
+
+(if (display-graphic-p)
+    (progn
+      (set-face-attribute 'default nil :height 200)))
+
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
