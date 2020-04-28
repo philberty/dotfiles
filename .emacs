@@ -58,17 +58,17 @@
                      go-guru
                      clang-format))
 
-;
-;
-fetch the list of packages available(unless package - archive - contents(package - refresh - contents))
 
-    ;
-;
-install the missing packages(dolist(package package - list)(
-    unless(package - installed - p package)(package - install package)))
+;; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
 
-    (global - visual - line - mode 1); 1 for on, 0 for off.
+;; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
+(global-visual-line-mode 1) ; 1 for on, 0 for off.
 (require 'fill-column-indicator)
 (setq fci-rule-width 1)
 (setq fci-rule-location 80)
@@ -335,7 +335,7 @@ install the missing packages(dolist(package package - list)(
   (require 'clang-format)
   (defun clang-format-buffer-smart ()
     "Reformat buffer if .clang-format exists in the projectile root."
-    (clang-format-buffer "Mozilla" (expand-file-name "contrib/clang-format" (projectile-project-root))))
+    (clang-format-buffer nil (expand-file-name "contrib/clang-format" (projectile-project-root))))
   
   (add-hook 'before-save-hook 'clang-format-buffer-smart)
 
