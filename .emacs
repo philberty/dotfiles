@@ -11,12 +11,12 @@
  '(initial-scratch-message ";; Happy Hacking")
  '(package-selected-packages
    (quote
-    (fill-column-indicator flycheck monokai-theme smooth-scrolling helm-gtags helm-projectile helm neotree projectile nyan-mode tabbar-ruler tabbar ac-c-headers ac-etags smart-mode-line-powerline-theme smart-mode-line stickyfunc-enhance google-c-style ggtags llvm-mode cython-mode markdown-mode web-mode go-mode rust-mode jedi)))
+    (clang-format fic-mode yaml-mode godoctor golint protobuf-mode go-snippets go-imports go-fill-struct flycheck-golangci-lint yasnippet go-complete fill-column-indicator flycheck monokai-theme smooth-scrolling helm-gtags helm-projectile helm neotree projectile nyan-mode tabbar-ruler tabbar ac-c-headers ac-etags smart-mode-line-powerline-theme smart-mode-line stickyfunc-enhance google-c-style ggtags llvm-mode cython-mode markdown-mode web-mode go-mode rust-mode jedi)))
  '(tool-bar-mode nil))
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 (setq package-list '(jedi
@@ -50,39 +50,30 @@
                      exec-path-from-shell
                      auto-complete
                      go-autocomplete
+                     go-complete
                      flymake-go
+                     golint
                      neotree
                      atom-one-dark-theme
-                     go-guru))
+                     go-guru
+                     clang-format))
 
-;; fetch the list of packages available
-(unless package-archive-contents
-  (package-refresh-contents))
+;
+;
+fetch the list of packages available(unless package - archive - contents(package - refresh - contents))
 
-;; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-        (package-install package)))
+    ;
+;
+install the missing packages(dolist(package package - list)(
+    unless(package - installed - p package)(package - install package)))
 
-(defun system-is-mac ()
-  (interactive)
-  (string-equal system-type "darwin"))
-
-(defun system-is-linux ()
-  (interactive)
-  (string-equal system-type "gnu/linux"))
-
-(global-visual-line-mode 1) ; 1 for on, 0 for off.
+    (global - visual - line - mode 1); 1 for on, 0 for off.
 
 (require 'fill-column-indicator)
 (setq fci-rule-width 1)
 (setq fci-rule-location 80)
 (setq fci-rule-color "darkblue")
 (fci-mode)
-
-; set command key to be meta instead of option
-(if (system-is-mac)
-   (setq ns-command-modifier 'meta))
 
 ;; auto reload disk changes
 (global-auto-revert-mode t)
@@ -96,12 +87,6 @@
 (global-font-lock-mode 1)
 (global-linum-mode 1)
 (column-number-mode 1)
-
-(require 'ggtags)
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-              (ggtags-mode 1))))
 
 (require 'helm)
 (require 'helm-projectile)
@@ -118,22 +103,24 @@
 (semantic-mode 1)
 (require 'stickyfunc-enhance)
 
-;; (require 'neotree)
-;; (with-eval-after-load 'neotree
-;;   (add-hook 'neotree-mode-hook 
-;;             (lambda () (with-current-buffer " *NeoTree*"
-;;                          (setq-local linum-mode nil)))))
-;; (global-set-key [f8] 'neotree-toggle)
-;; (neotree-toggle)
-;; (setq neo-theme 'ascii)
-;; (custom-set-faces
-;;  '(neo-banner-face ((t . (:inherit shadow))) t)
-;;  '(neo-header-face ((t . (:inherit shadow))) t)
-;;  '(neo-root-dir-face ((t . (:inherit link-visited :underline nil))) t)
-;;  '(neo-dir-link-face ((t . (:inherit dired-directory))) t)
-;;  '(neo-file-link-face ((t . (:inherit default))) t)
-;;  '(neo-button-face ((t . (:inherit dired-directory))) t)
-;;  '(neo-expand-btn-face ((t . (:inherit button))) t))
+(require 'neotree)
+(with-eval-after-load 'neotree
+  (add-hook 'neotree-mode-hook 
+            (lambda () (with-current-buffer " *NeoTree*"
+                         (setq-local linum-mode nil)))))
+(setq neo-theme 'ascii)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(neo-banner-face ((t :inherit shadow)))
+ '(neo-button-face ((t :inherit dired-directory)))
+ '(neo-dir-link-face ((t :inherit dired-directory)))
+ '(neo-expand-btn-face ((t :inherit button)))
+ '(neo-file-link-face ((t :inherit default)))
+ '(neo-header-face ((t :inherit shadow)))
+ '(neo-root-dir-face ((t :inherit link-visited :underline nil))))
 
 ;; python packages
 ;; $ sudo pip install jedi epc
@@ -151,8 +138,11 @@
 ;; stop creating auto-save files #
 (setq auto-save-default nil)
 
+;; My shortcut for "go to line"
+(global-set-key (kbd "C-x g") 'goto-line)
+
 ;; make electric-pair-mode work on more brackets
-(electric-pair-mode 0)
+(electric-pair-mode 1)
 (setq electric-pair-pairs '((?\" . ?\")
                             (?\{ . ?\})))
 
@@ -173,9 +163,7 @@
 (nyan-start-animation)
 
 ;; theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/monokai-theme-20150521.2257/")
 (load-theme 'monokai)
-
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
@@ -185,11 +173,9 @@
 (cua-mode 1)
 
 ;; auto-complete
-(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-1.4")
 (require 'auto-complete-config)
 (ac-config-default)
 
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20140824.1658/dict/")
 (setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
 (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
 (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
@@ -199,35 +185,10 @@
 (global-auto-complete-mode t)
 (add-to-list 'ac-modes 'objc-mode)
 
-(require 'ac-c-headers)
-(add-hook 'c-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-c-headers)
-            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-c-headers)
-            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
-
-
-(eval-after-load "etags"
-  '(progn
-     (ac-etags-setup)))
-(defun my/c-mode-common-hook ()
-  (add-to-list 'ac-sources 'ac-source-etags))
-(add-hook 'c-mode-common-hook 'my/c-mode-common-hook)
-(add-hook 'c++-mode-common-hook 'my/c-mode-common-hook)
-
 ;; python jedi
+(setq py-python-command "/usr/bin/python3")
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
-
-;; (defun flycheck-python-setup ()
-;;   (flycheck-mode))
-;; (add-hook 'python-mode-hook #'flycheck-python-setup)
-
-;; My shortcut for "go to line"
-(global-set-key (kbd "C-x g") 'goto-line)
 
 ;; Load python-mode for scons files
 (setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
@@ -237,12 +198,15 @@
 (setq auto-mode-alist (cons '("*.gyp" . javascript-mode) auto-mode-alist))
 
 ;; c/c++ mode style
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(setq-default c-basic-offset 4 c-default-style "linux")
-(defun my-c++-mode-hook ()
-  (setq c-basic-offset 4)
-)
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(require 'ac-c-headers)
+(add-hook 'c-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
 
 ;; web-mode on html files
 (setq auto-mode-alist (append ' (("\\.html?\\'" . web-mode)) auto-mode-alist))
@@ -258,6 +222,51 @@
 			'check-parens
 			nil t))))
 
+;;; for prog modes turn on flyspell-prog-mode (checks spell only in comments)
+(dolist (hook '(lisp-mode-hook
+                emacs-lisp-mode-hook
+                c++-mode-hook
+                c-mode-hook
+                go-mode-hook
+                python-mode-hook
+                javascript-mode-hook
+                LaTeX-mode-hook))
+  (add-hook hook 'flyspell-prog-mode))
+
+(defun flyspell-emacs-popup-textual (event poss word)
+      "A textual flyspell popup menu."
+      (require 'popup)
+      (let* ((corrects (if flyspell-sort-corrections
+                           (sort (car (cdr (cdr poss))) 'string<)
+                         (car (cdr (cdr poss)))))
+             (cor-menu (if (consp corrects)
+                           (mapcar (lambda (correct)
+                                     (list correct correct))
+                                   corrects)
+                         '()))
+             (affix (car (cdr (cdr (cdr poss)))))
+             show-affix-info
+             (base-menu  (let ((save (if (and (consp affix) show-affix-info)
+                                         (list
+                                          (list (concat "Save affix: " (car affix))
+                                                'save)
+                                          '("Accept (session)" session)
+                                          '("Accept (buffer)" buffer))
+                                       '(("Save word" save)
+                                         ("Accept (session)" session)
+                                         ("Accept (buffer)" buffer)))))
+                           (if (consp cor-menu)
+                               (append cor-menu (cons "" save))
+                             save)))
+             (menu (mapcar
+                    (lambda (arg) (if (consp arg) (car arg) arg))
+                    base-menu)))
+        (cadr (assoc (popup-menu* menu :scroll-bar t) base-menu))))
+
+(eval-after-load "flyspell"
+  '(progn
+     (fset 'flyspell-emacs-popup 'flyspell-emacs-popup-textual)))
+
 ;; high light current line
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#330")
@@ -272,20 +281,25 @@
 (setq ring-bell-function 'ignore)
 
 ;; Snag the user's PATH and GOPATH
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "GOPATH"))
+(exec-path-from-shell-initialize)
+(exec-path-from-shell-copy-env "GOBIN")
 
+;; Customize how flymake displays the errors
+'(flymake-errline ((((class color)) (:underline "OrangeRed"))))
+'(flymake-warnline ((((class color)) (:underline "yellow"))))
+
+;; go mode  --------------------------
 ;; Define function to call when go-mode loads
 (defun my-go-mode-hook ()
   (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
   (setq gofmt-command "goimports")                ; gofmt uses invokes goimports
   (if (not (string-match "go" compile-command))   ; set compile command default
       (set (make-local-variable 'compile-command)
-           "go build -v && go test -v && go vet"))
+           "go build -v ./..."))
 
   ;; guru settings
   (go-guru-hl-identifier-mode)                    ; highlight identifiers
+  (yas-minor-mode-on)
   
   ;; Key bindings specific to go-mode
   (local-set-key (kbd "M-.") 'godef-jump)         ; Go to definition
@@ -295,18 +309,43 @@
   (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
   (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
 
+  (require 'flymake-go)
+  (require 'golint)
+  (require 'go-autocomplete)
+  (require 'go-complete)
+  (require 'go-guru)
+  (add-hook 'completion-at-point-functions 'go-complete-at-point)
+  
   ;; Misc go stuff
   (auto-complete-mode 1))                         ; Enable auto-complete mode
 
 ;; Connect go-mode-hook with the function we just defined
 (add-hook 'go-mode-hook 'my-go-mode-hook)
+;; --------------------------
 
-;; Ensure the go specific autocomplete is active in go-mode.
-(with-eval-after-load 'go-mode
-   (require 'go-autocomplete))
+;; c++ mode  --------------------------
+(eval-after-load "etags"
+  '(progn
+     (ac-etags-setup)))
 
-;; If the go-guru.el file is in the load path, this will load it.
-(require 'go-guru)
+(setq-default c-basic-offset 4 c-default-style "linux")
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(defun my-c++-mode-hook ()
+  
+  (require 'clang-format)
+  (defun clang-format-buffer-smart ()
+    "Reformat buffer if .clang-format exists in the projectile root."
+    (clang-format-buffer "Mozilla" (expand-file-name "contrib/clang-format" (projectile-project-root))))
+  
+  (add-hook 'before-save-hook 'clang-format-buffer-smart)
+
+  (add-to-list 'ac-sources 'ac-source-etags)
+  (add-to-list 'ac-sources 'ac-source-etags)
+  (auto-complete-mode 1))                         ; Enable auto-complete mode
+
+;; Connect c++-mode-hook with the function we just defined
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+;; done
 
 ;; line number mode
 (eval-after-load 'linum
@@ -366,12 +405,3 @@ Non-interactive arguments are Begin End Regexp"
 (if (display-graphic-p)
     (progn
       (set-face-attribute 'default nil :height 200)))
-
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
