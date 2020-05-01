@@ -335,7 +335,7 @@
   (require 'clang-format)
   (defun clang-format-buffer-smart ()
     "Reformat buffer if .clang-format exists in the projectile root."
-    (clang-format-buffer nil (expand-file-name "contrib/clang-format" (projectile-project-root))))
+    (clang-format-buffer "file" (expand-file-name "contrib/clang-format" (projectile-project-root))))
   
   (add-hook 'before-save-hook 'clang-format-buffer-smart)
 
@@ -404,4 +404,4 @@ Non-interactive arguments are Begin End Regexp"
 
 (if (display-graphic-p)
     (progn
-      (set-face-attribute 'default nil :height 200)))
+      (set-face-attribute 'default nil :height 160)))
