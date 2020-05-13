@@ -335,7 +335,8 @@
   (require 'clang-format)
   (defun clang-format-buffer-smart ()
     "Reformat buffer if .clang-format exists in the projectile root."
-    (clang-format-buffer "file" (expand-file-name "contrib/clang-format" (projectile-project-root))))
+    (when (eq major-mode 'c++-mode)
+      (clang-format-buffer "file" (expand-file-name "contrib/clang-format" (projectile-project-root)))))
   
   (add-hook 'before-save-hook 'clang-format-buffer-smart)
 
