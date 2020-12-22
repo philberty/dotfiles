@@ -6,12 +6,12 @@
  '(ac-etags-requires 1)
  '(custom-safe-themes
    (quote
-    ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "3629b62a41f2e5f84006ff14a2247e679745896b5eaa1d5bcfbc904a3441b0cd" "f78de13274781fbb6b01afd43327a4535438ebaeec91d93ebdbba1e3fba34d3c" "ace9f12e0c00f983068910d9025eefeb5ea7a711e774ee8bb2af5f7376018ad2" "1fc1fdf975c8c8c3767c29787a063eee50cbceef903644a0771fa66568ee8777" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" "fb4bf07618eab33c89d72ddc238d3c30918a501cf7f086f2edf8f4edba9bd59f" default)))
+    ("8b58ef2d23b6d164988a607ee153fd2fa35ee33efc394281b1028c2797ddeebb" "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "3629b62a41f2e5f84006ff14a2247e679745896b5eaa1d5bcfbc904a3441b0cd" "f78de13274781fbb6b01afd43327a4535438ebaeec91d93ebdbba1e3fba34d3c" "ace9f12e0c00f983068910d9025eefeb5ea7a711e774ee8bb2af5f7376018ad2" "1fc1fdf975c8c8c3767c29787a063eee50cbceef903644a0771fa66568ee8777" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" "fb4bf07618eab33c89d72ddc238d3c30918a501cf7f086f2edf8f4edba9bd59f" default)))
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; Happy Hacking")
  '(package-selected-packages
    (quote
-    (clang-format fic-mode yaml-mode godoctor golint protobuf-mode go-snippets go-imports go-fill-struct flycheck-golangci-lint yasnippet go-complete fill-column-indicator flycheck monokai-theme smooth-scrolling helm-gtags helm-projectile helm neotree projectile nyan-mode tabbar-ruler tabbar ac-c-headers ac-etags smart-mode-line-powerline-theme smart-mode-line stickyfunc-enhance google-c-style ggtags llvm-mode cython-mode markdown-mode web-mode go-mode rust-mode jedi)))
+    (rustic clang-format fic-mode yaml-mode godoctor golint protobuf-mode go-snippets go-imports go-fill-struct flycheck-golangci-lint yasnippet go-complete fill-column-indicator flycheck monokai-theme smooth-scrolling helm-gtags helm-projectile helm neotree projectile nyan-mode tabbar-ruler tabbar ac-c-headers ac-etags smart-mode-line-powerline-theme smart-mode-line stickyfunc-enhance google-c-style ggtags llvm-mode cython-mode markdown-mode web-mode go-mode rust-mode jedi)))
  '(tool-bar-mode nil))
 
 (require 'package)
@@ -56,7 +56,10 @@
                      neotree
                      atom-one-dark-theme
                      go-guru
-                     clang-format))
+                     clang-format
+                     lsp-mode
+                     lsp-ui
+                     company))
 
 
 ;; fetch the list of packages available
@@ -179,34 +182,10 @@
 (setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
 (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
 (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-(add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
 (add-hook 'css-mode-hook 'ac-css-mode-setup)
 (add-hook 'auto-complete-mode-hook 'ac-common-setup)
 (global-auto-complete-mode t)
 (add-to-list 'ac-modes 'objc-mode)
-
-;; python jedi
-(setq py-python-command "/usr/bin/python3")
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
-;; Load python-mode for scons files
-(setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
-
-;; .gpy is javascript
-(setq auto-mode-alist (cons '("*.gyp" . javascript-mode) auto-mode-alist))
-
-;; c/c++ mode style
-(require 'ac-c-headers)
-(add-hook 'c-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-c-headers)
-            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-c-headers)
-            (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
 
 ;; web-mode on html files
 (setq auto-mode-alist (append ' (("\\.html?\\'" . web-mode)) auto-mode-alist))
@@ -228,6 +207,7 @@
                 c++-mode-hook
                 c-mode-hook
                 go-mode-hook
+                rust-mode-hok
                 python-mode-hook
                 javascript-mode-hook
                 LaTeX-mode-hook))
@@ -297,41 +277,47 @@
       (set (make-local-variable 'compile-command)
            "go build -v ./..."))
 
-  ;; guru settings
-  (go-guru-hl-identifier-mode)                    ; highlight identifiers
-  (yas-minor-mode-on)
-  
-  ;; Key bindings specific to go-mode
-  (local-set-key (kbd "M-.") 'godef-jump)         ; Go to definition
-  (local-set-key (kbd "M-*") 'pop-tag-mark)       ; Return from whence you came
-  (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
-  (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
-  (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
-  (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
+  (require 'lsp-mode)
+  (require 'lsp-ui)
+  (require 'company)
 
-  (require 'flymake-go)
-  (require 'golint)
-  (require 'go-autocomplete)
-  (require 'go-complete)
-  (require 'go-guru)
-  (add-hook 'completion-at-point-functions 'go-complete-at-point)
+  (local-set-key (kbd "C-c C-j") 'lsp-find-definition)
+  (global-set-key (kbd "C-<tab>") 'company-complete)
+
+  (lsp-register-custom-settings
+   '(("gopls.completeUnimported" t t)
+     ("gopls.staticcheck" t t)))
   
-  ;; Misc go stuff
-  (auto-complete-mode 1))                         ; Enable auto-complete mode
+  (lsp 1)
+  (lsp-ui-mode 1)
+)
 
 ;; Connect go-mode-hook with the function we just defined
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 ;; --------------------------
 
-;; c++ mode  --------------------------
-(eval-after-load "etags"
-  '(progn
-     (ac-etags-setup)))
+;; rust mode  --------------------------
+(defun my-rust-mode-hook ()
+  (setq indent-tabs-mode nil)
+  (setq rust-format-on-save t)
 
-(setq-default c-basic-offset 4 c-default-style "linux")
+  (require 'lsp-mode)
+  (require 'lsp-ui)
+  (require 'company)
+
+  (local-set-key (kbd "C-c C-j") 'lsp-find-definition)
+  (global-set-key (kbd "C-<tab>") 'company-complete)
+
+  (lsp 1)
+  (lsp-ui-mode 1)
+  )
+;; Connect rust-mode-hook with the function we just defined
+(add-hook 'rust-mode-hook 'my-rust-mode-hook)
+
+;; C/C++ mode  --------------------------
+
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (defun my-c++-mode-hook ()
-  
   (require 'clang-format)
   (defun clang-format-buffer-smart ()
     "Reformat buffer if .clang-format exists in the projectile root."
@@ -339,13 +325,47 @@
       (clang-format-buffer "file" (expand-file-name "contrib/clang-format" (projectile-project-root)))))
   
   (add-hook 'before-save-hook 'clang-format-buffer-smart)
+  
+  (require 'lsp-mode)
+  (require 'lsp-ui)
+  (require 'company)
 
-  (add-to-list 'ac-sources 'ac-source-etags)
-  (add-to-list 'ac-sources 'ac-source-etags)
-  (auto-complete-mode 1))                         ; Enable auto-complete mode
+  (setq lsp-print-io t)
+  (setq lsp-enable-snippet t)
+  (setq lsp-signature-render-documentation t)
+
+  (local-set-key (kbd "C-c C-j") 'lsp-find-definition)
+  (global-set-key (kbd "C-<tab>") 'company-complete)
+
+  (lsp 1)
+  (lsp-ui-mode 1)
+  )
+
+(defun my-c-mode-hook ()
+  (require 'clang-format)
+  (defun clang-format-buffer-smart ()
+    "Reformat buffer if .clang-format exists in the projectile root."
+    (when (eq major-mode 'c++-mode)
+      (clang-format-buffer "file" (expand-file-name "contrib/clang-format" (projectile-project-root)))))
+  
+  (add-hook 'before-save-hook 'clang-format-buffer-smart)
+  
+  (require 'lsp-mode)
+  (require 'lsp-ui)
+  (require 'company)
+
+  
+
+  (local-set-key (kbd "C-c C-j") 'lsp-find-definition)
+  (global-set-key (kbd "C-<tab>") 'company-complete)
+
+  (lsp 1)
+  (lsp-ui-mode 1)
+  )
 
 ;; Connect c++-mode-hook with the function we just defined
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'c-mode-hook 'my-c-mode-hook)
 ;; done
 
 ;; line number mode
