@@ -3,19 +3,43 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ac-etags-requires 1)
  '(custom-safe-themes
-   '("8b58ef2d23b6d164988a607ee153fd2fa35ee33efc394281b1028c2797ddeebb" "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "3629b62a41f2e5f84006ff14a2247e679745896b5eaa1d5bcfbc904a3441b0cd" "f78de13274781fbb6b01afd43327a4535438ebaeec91d93ebdbba1e3fba34d3c" "ace9f12e0c00f983068910d9025eefeb5ea7a711e774ee8bb2af5f7376018ad2" "1fc1fdf975c8c8c3767c29787a063eee50cbceef903644a0771fa66568ee8777" "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794" "fb4bf07618eab33c89d72ddc238d3c30918a501cf7f086f2edf8f4edba9bd59f" default))
+   '("8dbbcb2b7ea7e7466ef575b60a92078359ac260c91fe908685b3983ab8e20e3f"
+     "8b58ef2d23b6d164988a607ee153fd2fa35ee33efc394281b1028c2797ddeebb"
+     "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9"
+     "3629b62a41f2e5f84006ff14a2247e679745896b5eaa1d5bcfbc904a3441b0cd"
+     "f78de13274781fbb6b01afd43327a4535438ebaeec91d93ebdbba1e3fba34d3c"
+     "ace9f12e0c00f983068910d9025eefeb5ea7a711e774ee8bb2af5f7376018ad2"
+     "1fc1fdf975c8c8c3767c29787a063eee50cbceef903644a0771fa66568ee8777"
+     "c567c85efdb584afa78a1e45a6ca475f5b55f642dfcd6277050043a568d1ac6f"
+     "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223"
+     "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9"
+     "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e"
+     "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a"
+     "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf"
+     "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e"
+     "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a"
+     "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723"
+     "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85"
+     "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794"
+     "fb4bf07618eab33c89d72ddc238d3c30918a501cf7f086f2edf8f4edba9bd59f"
+     default))
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; Happy Hacking")
  '(package-selected-packages
-   '(qml-mode csharp-mode rustic clang-format fic-mode yaml-mode godoctor golint protobuf-mode go-snippets go-imports go-fill-struct flycheck-golangci-lint yasnippet go-complete fill-column-indicator flycheck monokai-theme smooth-scrolling helm-gtags helm-projectile helm neotree projectile nyan-mode tabbar-ruler tabbar ac-c-headers ac-etags smart-mode-line-powerline-theme smart-mode-line stickyfunc-enhance google-c-style ggtags llvm-mode cython-mode markdown-mode web-mode go-mode rust-mode jedi))
+   '(atom-one-dark-theme clang-format company cython-mode
+                         exec-path-from-shell fill-column-indicator
+                         flycheck ggtags go-mode helm-gtags
+                         helm-projectile lsp-ui monokai-theme neotree
+                         nyan-mode qml-mode rust-mode
+                         smart-mode-line-powerline-theme
+                         stickyfunc-enhance tabbar-ruler web-mode
+                         yaml-mode))
  '(safe-local-variable-values
    '((eval add-hook 'before-save-hook 'time-stamp)
      (eval c-set-offset 'innamespace 0)
      (eval c-set-offset 'brace-list-open 0)
-     (eval when
-           (fboundp 'c-toggle-comment-style)
+     (eval when (fboundp 'c-toggle-comment-style)
            (c-toggle-comment-style 1))))
  '(tool-bar-mode nil))
 
@@ -24,21 +48,16 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-(setq package-list '(jedi
-		     rust-mode
+(setq package-list '(rust-mode
 		     go-mode
 		     web-mode
 		     markdown-mode
 		     cython-mode
 		     ggtags
-		     google-c-style
 		     stickyfunc-enhance
 		     smart-mode-line
                      smart-mode-line-powerline-theme
-                     auto-complete
-                     ac-etags
-		     ac-c-headers
-		     tabbar
+                     tabbar
 		     tabbar-ruler
 		     nyan-mode
 		     projectile
@@ -46,26 +65,18 @@
 		     helm
 		     helm-projectile
 		     helm-gtags
-		     smooth-scrolling
                      monokai-theme
 		     fill-column-indicator
                      flycheck
                      flymake
                      go-mode
                      exec-path-from-shell
-                     auto-complete
-                     go-autocomplete
-                     go-complete
-                     flymake-go
-                     golint
                      neotree
                      atom-one-dark-theme
-                     go-guru
                      clang-format
                      lsp-mode
                      lsp-ui
                      company))
-
 
 ;; fetch the list of packages available
 (unless package-archive-contents
@@ -77,23 +88,25 @@
     (package-install package)))
 
 (global-visual-line-mode 1) ; 1 for on, 0 for off.
-(require 'fill-column-indicator)
-(setq fci-rule-width 1)
-(setq fci-rule-location 80)
-(setq fci-rule-color "darkblue")
-(fci-mode)
 
 ;; auto reload disk changes
 (global-auto-revert-mode t)
 ;; turn on line wrap
 (setq-default truncate-lines 1)
 
-(require 'smooth-scrolling)
-(setq smooth-scroll-margin 5)
+;; Built-in precise pixel scrolling (Emacs 29+)
+(pixel-scroll-precision-mode 1)
+
+;; Sensible, low-jitter line scrolling defaults
+(setq scroll-conservatively 101   ; never jump/recenter
+      scroll-margin 2             ; small safety margin
+      scroll-step 1
+      next-screen-context-lines 5
+      auto-window-vscroll nil)    ; helps with very long visual lines
 
 ;; font lock, line and column numbers on modeline
 (global-font-lock-mode 1)
-(global-linum-mode 1)
+(global-display-line-numbers-mode)
 (column-number-mode 1)
 
 (require 'helm)
@@ -107,8 +120,6 @@
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (helm-projectile-on)
 
-(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-(semantic-mode 1)
 (require 'stickyfunc-enhance)
 
 (require 'neotree)
@@ -180,18 +191,6 @@
 (set-cursor-color "red")
 (cua-mode 1)
 
-;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-
-(setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
-(add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
-(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-(add-hook 'css-mode-hook 'ac-css-mode-setup)
-(add-hook 'auto-complete-mode-hook 'ac-common-setup)
-(global-auto-complete-mode t)
-(add-to-list 'ac-modes 'objc-mode)
-
 ;; web-mode on html files
 (setq auto-mode-alist (append ' (("\\.html?\\'" . web-mode)) auto-mode-alist))
 
@@ -212,7 +211,7 @@
                 c++-mode-hook
                 c-mode-hook
                 go-mode-hook
-                rust-mode-hok
+                rust-mode-hook
                 python-mode-hook
                 javascript-mode-hook
                 LaTeX-mode-hook))
@@ -320,7 +319,7 @@
 (add-hook 'rust-mode-hook 'my-rust-mode-hook)
 
 ;; C/C++ mode  --------------------------
-(setq clang-format-executable "/home/philbert/workspace/llvm-project/build/bin/clang-format")
+;; (setq clang-format-executable "/home/philbert/workspace/llvm-project/build/bin/clang-format")
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (defun my-c++-mode-hook ()
@@ -341,14 +340,15 @@
   (setq lsp-signature-render-documentation t)
 
   (local-set-key (kbd "C-c C-j") 'lsp-find-definition)
+  (local-set-key (kbd "C-c C-k") 'lsp-find-references)
   (global-set-key (kbd "C-<tab>") 'company-complete)
 
   ;; (c-set-style "bsd")
   ;; (setq tab-width 4)
   ;; (setq c-basic-offset 4)
   ;; (setq c-label-minimum-indentation 4)
-  ;; (setq show-trailing-whitespace t)
-  ;; (setq indent-tabs-mode nil)
+  (setq show-trailing-whitespace t)
+  (setq indent-tabs-mode nil)
 
   (lsp 1)
   (lsp-ui-mode 1)
@@ -372,15 +372,15 @@
   (setq lsp-signature-render-documentation t)
 
   (local-set-key (kbd "C-c C-j") 'lsp-find-definition)
+  (local-set-key (kbd "C-c C-k") 'lsp-find-references)
   (global-set-key (kbd "C-<tab>") 'company-complete)
 
   ;; (c-set-style "bsd")
   ;; (setq tab-width 4)
   ;; (setq c-basic-offset 4)
   ;; (setq c-label-minimum-indentation 4)
-  ;; (setq show-trailing-whitespace t)
-  ;; (show-paren-mode)
-  ;; (setq indent-tabs-mode nil)
+  (setq show-trailing-whitespace t)
+  (setq indent-tabs-mode nil)
 
   (lsp 1)
   (lsp-ui-mode 1)
@@ -390,26 +390,6 @@
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 ;; done
-
-;; line number mode
-(eval-after-load 'linum
-  '(progn
-     (defface linum-leading-zero
-       `((t :inherit 'linum
-            :foreground ,(face-attribute 'linum :background nil t)))
-       "Face for displaying leading zeroes for line numbers in display margin."
-       :group 'linum)
-
-     (defun linum-format-func (line)
-       (let ((w (length
-                 (number-to-string (count-lines (point-min) (point-max))))))
-         (concat
-          (propertize (make-string (- w (length (number-to-string line))) ?0)
-                      'face 'linum-leading-zero)
-          (propertize (number-to-string line) 'face 'linum))))
-     
-     (setq linum-format 'linum-format-func)))
-(setq linum-format "%3d \u2502")
 
 (defun how-many-region (begin end regexp &optional interactive)
   "Print number of non-trivial matches for REGEXP in region.                    
@@ -444,8 +424,3 @@ Non-interactive arguments are Begin End Regexp"
           (rename-buffer new-name)
           (set-visited-file-name new-name)
                     (set-buffer-modified-p nil))))))
-
-
-(if (display-graphic-p)
-    (progn
-      (set-face-attribute 'default nil :height 160)))
