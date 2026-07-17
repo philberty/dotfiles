@@ -179,13 +179,29 @@
 
 (setq lsp-print-io nil
       lsp-enable-snippet t
-      lsp-signature-render-documentation t)
+      lsp-signature-render-documentation t
+
+      ;; Floating documentation at point.
+      lsp-ui-doc-enable t
+      lsp-ui-doc-show-with-cursor t
+      lsp-ui-doc-show-with-mouse nil
+      lsp-ui-doc-delay 0.5
+      lsp-ui-doc-position 'at-point
+
+      ;; Turn off the noisier automatic UI for now.
+      lsp-ui-sideline-enable nil
+      lsp-ui-peek-enable nil)
 
 (add-hook 'lsp-mode-hook #'lsp-ui-mode)
 
 (with-eval-after-load 'lsp-mode
   (define-key lsp-mode-map (kbd "C-c C-j") #'lsp-find-definition)
-  (define-key lsp-mode-map (kbd "C-c C-k") #'lsp-find-references))
+  (define-key lsp-mode-map (kbd "C-c C-k") #'lsp-find-references)
+  (define-key lsp-mode-map (kbd "C-c C-a") #'lsp-execute-code-action)
+  (define-key lsp-mode-map (kbd "C-c C-r") #'lsp-rename)
+  (define-key lsp-mode-map (kbd "C-c C-i") #'lsp-find-implementation)
+  (define-key lsp-mode-map (kbd "C-c C-t") #'lsp-find-type-definition)
+  (define-key lsp-mode-map (kbd "C-c C-o") #'lsp-clangd-find-other-file))
 
 ;;; Go
 
@@ -265,6 +281,10 @@
 ;;; Custom-generated settings
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("8dbbcb2b7ea7e7466ef575b60a92078359ac260c91fe908685b3983ab8e20e3f"
      "8b58ef2d23b6d164988a607ee153fd2fa35ee33efc394281b1028c2797ddeebb"
@@ -286,6 +306,7 @@
      "6fe6ab4abe97a4f13533e47ae59fbba7f2919583f9162b440dd06707b01f7794"
      "fb4bf07618eab33c89d72ddc238d3c30918a501cf7f086f2edf8f4edba9bd59f"
      default))
+ '(package-selected-packages nil)
  '(safe-local-variable-values
    '((eval add-hook 'before-save-hook 'time-stamp)
      (eval c-set-offset 'innamespace 0)
@@ -294,6 +315,10 @@
            (c-toggle-comment-style 1)))))
 
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(neo-banner-face ((t :inherit shadow)))
  '(neo-button-face ((t :inherit dired-directory)))
  '(neo-dir-link-face ((t :inherit dired-directory)))
