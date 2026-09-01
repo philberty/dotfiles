@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -ex
 
-apt isntall tmux \
+apt isntall \
+    tmux \
     build-essential \
     flex \
     bison \
@@ -14,23 +15,24 @@ apt isntall tmux \
     flex \
     bison \
     cmake \
+    wget \
+    curl \
+    python3-pip \
+    python3-venv \
+    python-is-python3 \
+    ack \
     libxkbcommon-x11-0 \
     libxcb-icccm4 \
     libxcb-image0 \
     libxcb-keysyms1 \
     libxcb-render-util0 \
     libxcb-xkb1 \
-    wget \
-    curl \
-    python3-pip \
     libxcb-cursor0 \
     libxcb-cursor-dev \
     libgl-dev \
     libegl-dev \
     libglx-dev \
     libglu1-mesa-dev \
-    python3-venv \
-    python-is-python3
     libxkbcommon-x11-0 \
     libxcb-xinerama0 \
     libxcb-cursor0 \
