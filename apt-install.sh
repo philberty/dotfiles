@@ -24,6 +24,22 @@ apt install -y \
     ccache \
     golang-go \
     dotnet-sdk-10.0 \
+    strace \
+    ltrace \
+    linux-tools-common \
+    linux-tools-generic \
+    net-tools \
+    iproute2 \
+    dnsutils \
+    tcpdump \
+    socat \
+    openssh-client \
+    rsync \
+    unzip \
+    zip \
+    gdb \
+    irssi \
+    mold \
     libxkbcommon-x11-0 \
     libxcb-icccm4 \
     libxcb-image0 \
