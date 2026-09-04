@@ -21,6 +21,7 @@ apt isntall \
     python3-venv \
     python-is-python3 \
     ack \
+    ccache \
     libxkbcommon-x11-0 \
     libxcb-icccm4 \
     libxcb-image0 \
