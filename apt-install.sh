@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -ex
 
-apt isntall \
+apt update
+
+apt install -y \
     tmux \
     build-essential \
     flex \
@@ -9,11 +11,9 @@ apt isntall \
     swig \
     git \
     clangd \
-    emacs \
     clang-format \
+    emacs \
     default-jdk \
-    flex \
-    bison \
     cmake \
     wget \
     curl \
@@ -22,6 +22,8 @@ apt isntall \
     python-is-python3 \
     ack \
     ccache \
+    golang-go \
+    dotnet-sdk-10.0 \
     libxkbcommon-x11-0 \
     libxcb-icccm4 \
     libxcb-image0 \
@@ -30,15 +32,8 @@ apt isntall \
     libxcb-xkb1 \
     libxcb-cursor0 \
     libxcb-cursor-dev \
+    libxcb-xinerama0 \
     libgl-dev \
     libegl-dev \
     libglx-dev \
-    libglu1-mesa-dev \
-    libxkbcommon-x11-0 \
-    libxcb-xinerama0 \
-    libxcb-cursor0 \
-    libxcb-icccm4 \
-    libxcb-image0 \
-    libxcb-keysyms1 \
-    libxcb-render-util0 \
-    libxcb-xkb1
+    libglu1-mesa-dev
