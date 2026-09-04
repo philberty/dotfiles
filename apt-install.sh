@@ -26,6 +26,7 @@ apt install -y \
     dotnet-sdk-10.0 \
     strace \
     ltrace \
+    dejagnu \
     linux-tools-common \
     linux-tools-generic \
     net-tools \
